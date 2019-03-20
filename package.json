@@ -1,0 +1,48 @@
+{
+  "name": "early-birds",
+  "version": "1.0.0",
+  "description": "early-birds technical test",
+  "main": "src/index.js",
+  "author": "Jordane Michon <jordane.michon@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
+    "clean": "rimraf dist",
+    "build": "babel src --out-dir dist",
+    "serve": "node dist/index.js",
+    "precommit": "lint-staged",
+    "lint": "eslint --fix src",
+    "format": "prettier --single-quote --trailing-comma es5 --write '{src,}/**/*.js' && npm run lint"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
+    "babel-eslint": "^10.0.1",
+    "bluebird": "^3.5.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.4.4",
+    "rimraf": "^2.6.1"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "prettier --single-quote --trailing-comma es5 --write",
+        "eslint --fix",
+        "git add"
+      ]
+    }
+  }
+}

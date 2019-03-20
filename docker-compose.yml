@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  resume:
+    build:
+      context: .
+    ports:
+      - 4030:4030
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules/
+    restart: unless-stopped
