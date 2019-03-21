@@ -1,7 +1,12 @@
 import express from 'express';
-import { getSimilarProductsById } from './product.controller';
+import { getSimilarProductsById, getAll } from './product.controller';
 
 const router = express.Router(); // eslint-disable-line new-cap
+
+router
+  .route('/')
+  /** GET /api/products - Get all products */
+  .get(getAll);
 
 router
   .route('/similar/:productId')

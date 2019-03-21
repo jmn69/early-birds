@@ -2,6 +2,16 @@ import colourProximity from 'colour-proximity';
 
 import Product from './product.model';
 
+export const getAll = async (req, res, next) => {
+  try {
+    const allProducts = await Product.find({});
+    res.json(allProducts);
+  }
+ catch (e) {
+    next(e);
+  }
+};
+
 /**
  * Get products where the color is the closest.
  * @property {number} req.query.limit - Limit number of products to be returned.
