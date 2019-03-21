@@ -5,7 +5,7 @@ services:
     build:
       context: .
     ports:
-      - 4030:4030
+      - 3000:3000
     env_file:
       - .env
     volumes:
