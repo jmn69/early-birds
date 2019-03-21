@@ -12,8 +12,9 @@ const connectToDb = async () => {
       keepAlive: true,
       useNewUrlParser: true,
     });
+    Mongoose.set('useFindAndModify', false);
   }
-  catch (err) {
+ catch (err) {
     throw new Error(`unable to connect to database: ${mongoUri}`);
   }
 };

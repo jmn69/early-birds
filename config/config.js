@@ -9,6 +9,9 @@ const envVarsSchema = Joi.object({
     .required()
     .description('Mongo DB host url'),
   MONGO_PORT: Joi.number().default(27017),
+  GOOGLE_VISION_API_KEY: Joi.string()
+    .required()
+    .description('Google vision api key'),
 })
   .unknown()
   .required();
@@ -23,5 +26,6 @@ const config = {
     host: envVars.MONGO_HOST,
     port: envVars.MONGO_PORT,
   },
+  googleVisionApiKey: envVars.GOOGLE_VISION_API_KEY,
 };
 export default config;

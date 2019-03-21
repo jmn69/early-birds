@@ -9,7 +9,7 @@ import connectToDb from '../db/connect';
 connectToDb();
 
 const stream = fs.createReadStream(
-  'statics/products_eb_test_technique_short.csv',
+  'statics/products_eb_test_technique_short.csv'
 );
 
 const productsFromCsv = [];
@@ -26,18 +26,24 @@ const csvStream = csv({ headers: true, delimiter: ';' })
     }
   })
   .on('end', async () => {
-    await Promise.all(
-      productsFromCsv.map(async product => {
-        const productToAdd = Product(product);
-        try {
-          const savedProduct = await Product.add(productToAdd);
-          console.log(`Product added: ${savedProduct}`);
-        }
-        catch (err) {
-          console.log(`Product error: ${err}`);
-        }
-      }),
-    );
+    try {
+      await Promise.all(
+        productsFromCsv.map(async product => {
+          const productToAdd = Product(product);
+          try {
+            const savedProduct = await Product.add(productToAdd);
+            console.log(`Product added: ${savedProduct}`);
+          }
+ catch (err) {
+            console.log(`Product error: ${err}`);
+          }
+        })
+      );
+    }
+ catch (e) {
+      console.log(e);
+      process.exit(1);
+    }
     console.log('-------------');
     console.log(`${productsFromCsv.length} products added`);
     process.exit(0);
