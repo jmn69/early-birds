@@ -8,9 +8,12 @@ import connectToDb from '../db/connect';
 
 connectToDb();
 
-const stream = fs.createReadStream(
-  'statics/products_eb_test_technique_short.csv'
-);
+let filePath = 'statics/products_eb_test_technique_short.csv';
+if (process.argv && process.argv.length > 2) {
+  filePath = process.argv[2];
+}
+
+const stream = fs.createReadStream(filePath);
 
 const productsFromCsv = [];
 
