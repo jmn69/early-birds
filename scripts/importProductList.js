@@ -8,7 +8,7 @@ import connectToDb from '../db/connect';
 
 connectToDb();
 
-let filePath = 'statics/products_eb_test_technique_short.csv';
+let filePath = 'statics/products_eb_test_technique.csv';
 if (process.argv && process.argv.length > 2) {
   filePath = process.argv[2];
 }
@@ -36,14 +36,12 @@ const csvStream = csv({ headers: true, delimiter: ';' })
           try {
             const savedProduct = await Product.add(productToAdd);
             console.log(`Product added: ${savedProduct}`);
-          }
- catch (err) {
+          } catch (err) {
             console.log(`Product error: ${err}`);
           }
         })
       );
-    }
- catch (e) {
+    } catch (e) {
       console.log(e);
       process.exit(1);
     }
