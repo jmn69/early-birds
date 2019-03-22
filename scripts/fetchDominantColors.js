@@ -30,6 +30,7 @@ const question = async products => {
     async answer => {
       if (answer === 'y') {
         try {
+          let cpt = 0;
           /*
           Using bluebird map here to handle concurrency
           Google vision api started to show some errors with too many call at the same time
@@ -39,8 +40,11 @@ const question = async products => {
             async product => {
               try {
                 await fetchImagePropVision(product);
+                cpt += 1;
                 console.log(
-                  `Product dominant color fetched: ${product.productCode}/${
+                  `(${cpt}/${
+                    products.length
+                  }) Product dominant color fetched: ${product.productCode}/${
                     product.title
                   }`
                 );
@@ -49,7 +53,7 @@ const question = async products => {
                 console.log(`Product error: ${err}`);
               }
             },
-            { concurrency: 4 }
+            { concurrency: 10 }
           );
 
           process.exit(0);

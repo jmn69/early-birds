@@ -43,7 +43,7 @@ Cet import n'est pas générique il se base sur les champs présents dans le csv
 Interroge l'api google vision sur les produits ne possèdant pas encore de propriété `dominantColor` en bdd.
 Une validation vous affiche le nombre de produits sur le point d'être interrogé avec l'api google.
 
-Suite à des erreurs de la part de l'api google vision avec un trop grand nombre d'appels concurrents, j'ai limité à 4 ce nombre.
+Suite à des erreurs de la part de l'api google vision avec un trop grand nombre d'appels concurrents, j'ai limité à 10 ce nombre.
 
 Une fois la couleur dominante trouvée, elle est rajouté et sauvegardé dans un champ du produit en bdd.
 
